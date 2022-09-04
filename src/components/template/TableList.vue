@@ -7,6 +7,7 @@
           <thead>
           <tr>
             <th  v-for="(label, labelIndex) in campos" :key="labelIndex" scope="col">{{ label.text }}</th>
+            <th v-if="acoes.length" scope="col"></th>
           </tr>
           </thead>
           <tbody v-if="itens.length">
@@ -14,12 +15,26 @@
               <td v-for="(label, labelIndex) in campos" :key="labelIndex">
                 <p>{{ item[label.field] }}</p>
               </td>
+              <td v-if="acoes.length">
+                <button v-if="inArray('edit', acoes)"
+                        class="btn-sm btn-info m-1"
+                        title="Editar"
+                        @click="editarDeletar('editar', item)">
+                  <i class="mdi mdi-square-edit-outline"></i>
+                </button>
+                <button v-if="inArray('delete', acoes)"
+                        class="btn-sm btn-danger m-1"
+                        title="Deletar"
+                        @click="editarDeletar('deletar', item)">
+                  <i class="mdi mdi-window-close"></i>
+                </button>
+              </td>
             </tr>
           </tbody>
 
           <tbody v-else>
             <tr>
-              <td>Nenhum registro encontrado.</td>
+              <td :colspan="campos.length">Nenhum registro encontrado.</td>
             </tr>
           </tbody>
         </table>
@@ -32,7 +47,20 @@
 <script>
 export default {
   name: "TableList",
-  props: ['title', 'campos', 'itens']
+  props: ['title', 'campos', 'itens', 'acoes'],
+  methods: {
+    inArray(needle, haystack) {
+      var length = haystack.length;
+      for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+      }
+      return false;
+    },
+
+    editarDeletar(acao, i) {
+      this.$emit(acao, i);
+    }
+  }
 }
 </script>
 

@@ -27,6 +27,9 @@
           title="Últimos Produtos"
           :campos="campos"
           :itens="produtos"
+          :acoes="acoes"
+          @editar="editar($event)"
+          @deletar="deletar($event)"
       />
     </div>
 
@@ -59,7 +62,8 @@ export default {
       produtos : [
         { id: 1, name: 'Foo', date_created: '01.01.2021' },
         { id: 2, name: 'Bar', date_created: '01.01.2021' }
-      ]
+      ],
+      acoes: [] // Edit, delete
     }
   }
 }
