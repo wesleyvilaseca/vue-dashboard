@@ -10,7 +10,7 @@
             <div>
               <router-link to="/" class="logo">
                 <span class="logo-light">
-                        <i class="mdi mdi-camera-control"></i> {{ $store.state.nameSite }}
+                        <i class="mdi mdi-camera-control"></i> {{ site }}
                 </span>
               </router-link>
             </div>
@@ -86,8 +86,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  computed: {
+    ...mapState({
+      site: "nameSite"
+    })
+  }
 }
 </script>
 

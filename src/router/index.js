@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MarcasView from "@/views/brands/MarcasView";
+import AddMarcaView from "@/views/brands/AddMarcaView";
+import ProdutosView from "@/views/products/ProdutosView";
+import AddProdutoView from "@/views/products/AddProdutoView";
 import store from "@/store/index";
 
 const routes = [
@@ -17,7 +21,15 @@ const routes = [
     meta: {
       title: "Marcas - " + store.state.nameSite
     },
-    component: () => import('../views/MarcasView.vue')
+    component: MarcasView
+  },
+  {
+    path: '/marcas/adicionar',
+    name: 'add_marcas',
+    meta: {
+      title: "Adicionar Marca - " + store.state.nameSite
+    },
+    component: AddMarcaView
   },
   {
     path: '/produtos',
@@ -25,7 +37,15 @@ const routes = [
     meta: {
       title: "Produtos - " + store.state.nameSite
     },
-    component: () => import('../views/ProdutosView.vue')
+    component: ProdutosView
+  },
+  {
+    path: '/produtos/adicionar',
+    name: 'add_produtos',
+    meta: {
+      title: "Adicionar Produto - " + store.state.nameSite
+    },
+    component: AddProdutoView,
   },
 ]
 

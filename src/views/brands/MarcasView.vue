@@ -19,7 +19,7 @@
 <script>
 import PageTitle from "@/components/template/PageTitle";
 import TableList from "@/components/template/TableList";
-import { mapActions, mapState } from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -40,14 +40,29 @@ export default {
     acoes: ['edit', 'delete'],
   }),
   methods: {
-    ...mapActions(["fetchBrands"]),
+    ...mapActions(["fetchBrands", "deleteBrand"]),
 
-    editar(i) {
-      return i;
+    editar() {
+
     },
 
-    deletar(i) {
-      return i;
+    deletar(item) {
+
+      // Verifica se realmente deve deletar
+      this.$swal.fire({
+        title: 'Deletar Marca',
+        text: `Deseja realmente deletar a marca ${item.name}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Sim, pode deletar.',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteBrand(item);
+        }
+      })
     }
   },
   computed: {
