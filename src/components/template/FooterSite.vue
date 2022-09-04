@@ -1,21 +1,18 @@
 <template>
   <div>
       <footer class="footer">
-        © {{ date }} {{ constantes.NameSite }}
+        © {{ date }} {{ $store.state.nameSite }}
         <span class="d-none d-sm-inline-block"> - Todos os direitos reservados </span>.
       </footer>
   </div>
 </template>
 
 <script>
-import Constants from "@/config/constants";
-
 export default {
   name: "FooterSite",
   data: () => {
     return {
-      date: '',
-      constantes: Constants
+      date: ''
     }
   },
   mounted() {

@@ -10,7 +10,7 @@
             <div>
               <router-link to="/" class="logo">
                 <span class="logo-light">
-                        <i class="mdi mdi-camera-control"></i> {{ constantes.NameSite }}
+                        <i class="mdi mdi-camera-control"></i> {{ $store.state.nameSite }}
                 </span>
               </router-link>
             </div>
@@ -86,15 +86,8 @@
 </template>
 
 <script>
-import Constantes from "@/config/constants";
-
 export default {
-  name: "NavBar",
-  data: () => {
-    return {
-      constantes: Constantes
-    }
-  }
+  name: "NavBar"
 }
 </script>
 

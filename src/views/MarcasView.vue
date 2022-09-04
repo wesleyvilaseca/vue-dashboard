@@ -7,7 +7,7 @@
       <TableList
           title="Marcas cadastradas"
           :campos="campos"
-          :itens="marcas"
+          :itens="listBrands"
           :acoes="acoes"
           @editar="editar($event)"
           @deletar="deletar($event)"
@@ -19,28 +19,29 @@
 <script>
 import PageTitle from "@/components/template/PageTitle";
 import TableList from "@/components/template/TableList";
+import { mapActions, mapState } from "vuex";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Marcas",
   components: {TableList, PageTitle},
-  data: () => {
-    return {
-      pages: [
-        {
-          name: "Início",
-          link: "/"
-        }
-      ],
-      campos: [
-        { text: 'ID', field: 'id' },
-        { text: 'Titulo', field: 'name' },
-        { text: 'Descrição', field: 'description' }
-      ],
-      marcas: [],
-      acoes: ['edit', 'delete'],
-    }
-  },
+  data: () => ({
+    pages: [
+      {
+        name: "Início",
+        link: "/"
+      }
+    ],
+    campos: [
+      {text: 'ID', field: 'id'},
+      {text: 'Titulo', field: 'name'},
+      {text: 'Descrição', field: 'description'}
+    ],
+    acoes: ['edit', 'delete'],
+  }),
   methods: {
+    ...mapActions(["fetchBrands"]),
+
     editar(i) {
       return i;
     },
@@ -48,6 +49,12 @@ export default {
     deletar(i) {
       return i;
     }
+  },
+  computed: {
+    ...mapState(["listBrands"])
+  },
+  created() {
+    this.fetchBrands();
   }
 }
 </script>
