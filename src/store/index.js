@@ -22,12 +22,20 @@ export default createStore({
       });
 
       return itens;
-    }
+    },
+    totalProducts: (state) => state.listProducts.length,
+    totalBrands: (state) => state.listBrands.length,
   },
   mutations: {
     setBrands: (states, brands) => states.listBrands = brands,
     setProducts: (state, products) => state.listProducts = products,
     removeBrand: (state, id) => state.listBrands = state.listBrands.filter(data => data.id !== id),
+    updateBrandMutation: (state, obj) => {
+        // Remove o item
+        state.listBrands = state.listBrands.filter(data => data.id !== obj.id);
+        // Add o item
+        state.listBrands.push(obj)
+    },
   },
   actions: {
     // Busca as marcas
@@ -65,6 +73,59 @@ export default createStore({
             // eslint-disable-next-line no-undef
             Toast.fire(error.message, "", "error");
           })
+    },
+
+    // Metodo responsável por realizar a inserção de uma nova marca
+    insertBrand(context, item) {
+      // Repassa para obj
+      var list = context.state.listBrands;
+
+      // Processa a api
+      fetch(context.state.apiURL + "brands/", {method: "POST", body: item})
+          .then(function(response) {
+            if(response.ok) {
+              // Recupera o retorno
+              let data = response.json();
+              data = data.data;
+
+              // Atualiza a lista
+              list.push(data);
+
+              // salva a lista atualizada
+              context.commit("setBrands", list)
+
+              // eslint-disable-next-line no-undef
+              Toast.fire(`A marca ${item.name} foi inserida com sucesso.`, "", "success");
+            } else {
+              // eslint-disable-next-line no-undef
+              Toast.fire("Ocorreu um erro ao tentar inserir a marca.", "", "error");
+            }
+          })
+          .catch(function(error) {
+            // eslint-disable-next-line no-undef
+            Toast.fire(error.message, "", "error");
+          })
+    },
+
+    updateBrand(context, {obj, form}) {
+        // Processa a api
+        fetch(context.state.apiURL + "brands/" + obj.id + "/edit", {method: "POST", body: form})
+            .then(function(response) {
+                if(response.ok) {
+                    // Altera na listagem
+                    context.commit("updateBrandMutation", obj);
+
+                    // eslint-disable-next-line no-undef
+                    Toast.fire(`A marca foi alterada com sucesso.`, "", "success");
+                } else {
+                    // eslint-disable-next-line no-undef
+                    Toast.fire("Ocorreu um erro ao tentar editar.", "", "error");
+                }
+            })
+            .catch(function(error) {
+                // eslint-disable-next-line no-undef
+                Toast.fire(error.message, "", "error");
+            })
     }
   },
   modules: {

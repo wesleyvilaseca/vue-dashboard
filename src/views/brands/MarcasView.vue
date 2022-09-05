@@ -1,6 +1,20 @@
 <template>
   <PageTitle page="Marcas" :pages="pages" />
 
+  <Modal
+      v-show="isModalVisible"
+      title="Editar produto"
+      @close="closeModal">
+    <template v-slot:content>
+      <FormBrand
+          title=""
+          description=""
+          :item="itemEdita"
+          @processaFormulario="alterarMarca($event)"
+      />
+    </template>
+  </Modal>
+
   <!-- Table -->
   <div class="row">
     <div class="col-xl-12">
@@ -20,11 +34,13 @@
 import PageTitle from "@/components/template/PageTitle";
 import TableList from "@/components/template/TableList";
 import {mapActions, mapState} from "vuex";
+import Modal from "@/components/template/Modal";
+import FormBrand from "@/components/brands/FormBrand";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Marcas",
-  components: {TableList, PageTitle},
+  components: {FormBrand, Modal, TableList, PageTitle},
   data: () => ({
     pages: [
       {
@@ -37,13 +53,33 @@ export default {
       {text: 'Titulo', field: 'name'},
       {text: 'Descrição', field: 'description'}
     ],
+    isModalVisible: false,
+    itemEdita: {},
     acoes: ['edit', 'delete'],
   }),
   methods: {
-    ...mapActions(["fetchBrands", "deleteBrand"]),
+    ...mapActions(["fetchBrands", "deleteBrand", "updateBrand"]),
 
-    editar() {
+    closeModal() {
+      this.isModalVisible = false;
+    },
 
+    editar(dados) {
+      this.itemEdita = dados;
+      this.isModalVisible = true;
+    },
+
+    alterarMarca(dados) {
+      dados.id = this.itemEdita.id;
+
+      var form = new FormData();
+      form.set("name", dados.name);
+      form.set("description", dados.description);
+
+      this.updateBrand({
+        obj: dados,
+        form
+      })
     },
 
     deletar(item) {

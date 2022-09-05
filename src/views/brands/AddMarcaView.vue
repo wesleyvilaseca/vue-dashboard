@@ -6,6 +6,7 @@
       <FormBrand
           title="Adicione uma nova marca"
           description="Preencha os dados corretamente."
+          @processaFormulario="processaFormulario($event)"
       />
     </div>
   </div>
@@ -15,6 +16,7 @@
 <script>
 import PageTitle from "@/components/template/PageTitle";
 import FormBrand from "@/components/brands/FormBrand";
+import {mapActions} from "vuex";
 
 export default {
   name: "AddMarcaView",
@@ -30,6 +32,20 @@ export default {
         link: "/marcas"
       }
     ],
-  })
+  }),
+  methods: {
+    ...mapActions(["insertBrand"]),
+
+    // Insere a marca
+    processaFormulario(item) {
+      // Repassa o obj para form obj.
+      let form = new FormData();
+      form.set("name", item.name);
+      form.set("description", item.description);
+
+      // Processa a api
+      this.insertBrand(form)
+    }
+  }
 }
 </script>

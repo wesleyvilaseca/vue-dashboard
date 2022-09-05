@@ -5,7 +5,7 @@
   <div class="row">
     <CardNumber
         title="Produtos"
-        total="10"
+        :total="totalProducts"
         icon="mdi mdi-tag-multiple bg-success text-white"
         descricao="total de produtos"
         classe="col-sm-6"
@@ -13,7 +13,7 @@
 
     <CardNumber
         title="Marcas"
-        total="10"
+        :total="totalBrands"
         icon="mdi mdi-tag-multiple bg-info text-white"
         descricao="total de marcas"
         classe="col-sm-6"
@@ -41,30 +41,38 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
 import PageTitle from "@/components/template/PageTitle";
 import CardNumber from "@/components/template/CardNumber";
 import TableList from "@/components/template/TableList";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: 'HomeView',
   components: {TableList, CardNumber, PageTitle},
-  data: () => {
-    return {
-      campos : [
-        { text: 'ID', field: 'id' },
-        { text: 'Name', field: 'name' },
-        { text: 'Created', field: 'date_created' },
-      ],
-      produtos : [
-        { id: 1, name: 'Foo', date_created: '01.01.2021' },
-        { id: 2, name: 'Bar', date_created: '01.01.2021' }
-      ],
-      acoes: [] // Edit, delete
-    }
+  data: () => ({
+    campos : [
+      { text: 'ID', field: 'id' },
+      { text: 'Name', field: 'name' },
+      { text: 'Created', field: 'date_created' },
+    ],
+    produtos : [
+      { id: 1, name: 'Foo', date_created: '01.01.2021' },
+      { id: 2, name: 'Bar', date_created: '01.01.2021' }
+    ],
+    acoes: [] // Edit, delete
+  }),
+  methods: {
+    ...mapActions(["fetchBrands","fetchProducts"])
+  },
+  computed: {
+    ...mapGetters(["totalBrands", "totalProducts"])
+  },
+  created() {
+    this.fetchBrands();
+    this.fetchProducts();
   }
 }
 </script>
