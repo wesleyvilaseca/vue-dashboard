@@ -63,7 +63,7 @@ export default {
 .modalVue {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 900000!important; /* Sit on top */
+  z-index: 55!important; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */

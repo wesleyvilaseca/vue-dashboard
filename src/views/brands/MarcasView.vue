@@ -62,6 +62,7 @@ export default {
 
     closeModal() {
       this.isModalVisible = false;
+      this.itemEdita = {}
     },
 
     editar(dados) {
@@ -76,10 +77,9 @@ export default {
       form.set("name", dados.name);
       form.set("description", dados.description);
 
-      this.updateBrand({
-        obj: dados,
-        form
-      })
+      if(this.updateBrand({obj: dados, form})) {
+        this.closeModal()
+      }
     },
 
     deletar(item) {

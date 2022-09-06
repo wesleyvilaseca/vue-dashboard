@@ -99,5 +99,5 @@ export default {
 </script>
 
 <style scoped>
-
+#topnav{z-index: 50 !important;}
 </style>

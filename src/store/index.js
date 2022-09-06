@@ -107,9 +107,10 @@ export default createStore({
           })
     },
 
+    // Responsável por alterar os dados de uma marca
     updateBrand(context, {obj, form}) {
         // Processa a api
-        fetch(context.state.apiURL + "brands/" + obj.id + "/edit", {method: "POST", body: form})
+        return fetch(context.state.apiURL + "brands/" + obj.id + "/edit", {method: "POST", body: form})
             .then(function(response) {
                 if(response.ok) {
                     // Altera na listagem
@@ -117,9 +118,11 @@ export default createStore({
 
                     // eslint-disable-next-line no-undef
                     Toast.fire(`A marca foi alterada com sucesso.`, "", "success");
+                    return true;
                 } else {
                     // eslint-disable-next-line no-undef
                     Toast.fire("Ocorreu um erro ao tentar editar.", "", "error");
+                    return false;
                 }
             })
             .catch(function(error) {
