@@ -5,7 +5,7 @@
   <div class="row">
     <CardNumber
         title="Produtos"
-        :total="totalProducts"
+        :total="totalProducts()"
         icon="mdi mdi-tag-multiple bg-success text-white"
         descricao="total de produtos"
         classe="col-sm-6"
@@ -13,7 +13,7 @@
 
     <CardNumber
         title="Marcas"
-        :total="totalBrands"
+        :total="totalBrands()"
         icon="mdi mdi-tag-multiple bg-info text-white"
         descricao="total de marcas"
         classe="col-sm-6"
@@ -26,16 +26,14 @@
       <TableList
           title="Últimos Produtos"
           :campos="campos"
-          :itens="produtos"
+          :itens="produtos()"
           :acoes="acoes"
-          @editar="editar($event)"
-          @deletar="deletar($event)"
       />
     </div>
 
     <div class="col-md-12">
       <div class="text-center">
-        <router-link to="/produtos" v-if="produtos.length" class="btn btn-purple">
+        <router-link to="/produtos" v-if="produtos().length" class="btn btn-purple">
           Todos os produtos
         </router-link>
       </div>
@@ -53,22 +51,28 @@ export default {
   name: 'HomeView',
   components: {TableList, CardNumber, PageTitle},
   data: () => ({
-    campos : [
+    campos: [
       { text: 'ID', field: 'id' },
-      { text: 'Name', field: 'name' },
-      { text: 'Created', field: 'date_created' },
-    ],
-    produtos : [
-      { id: 1, name: 'Foo', date_created: '01.01.2021' },
-      { id: 2, name: 'Bar', date_created: '01.01.2021' }
+      { text: 'Titulo', field: 'title' },
+      { text: 'Descrição', field: 'description' },
+      { text: 'Marca', field: 'brand' }
     ],
     acoes: [] // Edit, delete
   }),
   methods: {
-    ...mapActions(["fetchBrands","fetchProducts"])
-  },
-  computed: {
-    ...mapGetters(["totalBrands", "totalProducts"])
+    ...mapActions(["fetchBrands","fetchProducts"]),
+
+    ...mapGetters(["totalBrands", "totalProducts", "getNewsProducts"]),
+
+    produtos() {
+      let prod = this.getNewsProducts();
+
+      if(prod) {
+        return prod;
+      }
+
+      return {}
+    }
   },
   created() {
     this.fetchBrands();

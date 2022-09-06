@@ -4,6 +4,7 @@ export default createStore({
   state: {
     listBrands: [],
     listProducts: [],
+    listOptions: [],
     nameSite: "ELETRON",
     apiURL: "http://127.0.0.1:8000/api/v1/"
   },
@@ -23,6 +24,7 @@ export default createStore({
 
       return itens;
     },
+    getNewsProducts: (state, getters) => getters.getProducts.reverse().slice(0,5),
     totalProducts: (state) => state.listProducts.length,
     totalBrands: (state) => state.listBrands.length,
   },
