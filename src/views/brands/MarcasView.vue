@@ -62,11 +62,10 @@ export default {
 
     closeModal() {
       this.isModalVisible = false;
-      this.itemEdita = {}
     },
 
     editar(dados) {
-      this.itemEdita = dados;
+      this.itemEdita = dados
       this.isModalVisible = true;
     },
 

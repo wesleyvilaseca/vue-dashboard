@@ -41,7 +41,7 @@ export default {
     acoes: ['edit', 'delete']
   }),
   methods: {
-    ...mapActions(["fetchProducts"]),
+    ...mapActions(["fetchProducts", "deleteProducts"]),
 
     ...mapGetters(["getProducts"]),
 
@@ -49,8 +49,23 @@ export default {
       return i;
     },
 
-    deletar(i) {
-      return i;
+    deletar(item) {
+
+      // Verifica se realmente deve deletar
+      this.$swal.fire({
+        title: 'Deletar Produto',
+        text: `Deseja realmente deletar o produto ${item.title}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Sim, pode deletar.',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteProducts(item);
+        }
+      })
     }
   },
   computed: {
