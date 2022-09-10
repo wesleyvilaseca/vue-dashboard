@@ -4,6 +4,7 @@ import MarcasView from "@/views/brands/MarcasView";
 import AddMarcaView from "@/views/brands/AddMarcaView";
 import ProdutosView from "@/views/products/ProdutosView";
 import AddProdutoView from "@/views/products/AddProdutoView";
+import EditProdutoView from "@/views/products/EditProdutoView";
 import store from "@/store/index";
 
 const routes = [
@@ -47,6 +48,14 @@ const routes = [
     },
     component: AddProdutoView,
   },
+  {
+    path: '/produto/:id',
+    name: 'edit_produtos',
+    meta: {
+      title: "Editar Produto - " + store.state.nameSite
+    },
+    component: EditProdutoView,
+  }
 ]
 
 const router = createRouter({

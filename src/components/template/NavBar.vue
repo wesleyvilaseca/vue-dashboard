@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "NavBar",
@@ -94,6 +94,13 @@ export default {
     ...mapState({
       site: "nameSite"
     })
+  },
+  methods: {
+    ...mapActions(["fetchProducts", "fetchBrands"])
+  },
+  created() {
+    this.fetchProducts();
+    this.fetchBrands();
   }
 }
 </script>

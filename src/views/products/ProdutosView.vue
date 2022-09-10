@@ -41,12 +41,12 @@ export default {
     acoes: ['edit', 'delete']
   }),
   methods: {
-    ...mapActions(["fetchProducts", "deleteProducts"]),
+    ...mapActions(["deleteProducts"]),
 
     ...mapGetters(["getProducts"]),
 
     editar(i) {
-      return i;
+      this.$router.push(`/produto/${i.id}`);
     },
 
     deletar(item) {
@@ -67,12 +67,6 @@ export default {
         }
       })
     }
-  },
-  computed: {
-    /* ...mapState(["listProducts"]), */
-  },
-  created() {
-    this.fetchProducts();
   }
 }
 </script>

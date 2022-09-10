@@ -58,7 +58,7 @@ export default {
     acoes: ['edit', 'delete'],
   }),
   methods: {
-    ...mapActions(["fetchBrands", "deleteBrand", "updateBrand"]),
+    ...mapActions(["deleteBrand", "updateBrand"]),
 
     closeModal() {
       this.isModalVisible = false;
@@ -102,9 +102,6 @@ export default {
   },
   computed: {
     ...mapState(["listBrands"])
-  },
-  created() {
-    this.fetchBrands();
   }
 }
 </script>

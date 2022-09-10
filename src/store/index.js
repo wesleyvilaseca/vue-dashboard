@@ -50,6 +50,7 @@ export default createStore({
     actions: {
         // Busca as marcas
         fetchBrands(context) {
+            console.log("busca marcas")
             fetch(context.state.apiURL + "brands")
                 .then(response => response.json())
                 .then(dados => {
@@ -134,12 +135,19 @@ export default createStore({
 
         // ------------------------------------------------
 
+        // Busca um produto em especifico
+        getProductId: (context, id) => {
+            return context.state.listProducts.filter(data => data.id == id);
+        },
+
         // Busca os produtos
         fetchProducts(context) {
+            console.log("busca produtos")
             fetch(context.state.apiURL + "products")
                 .then(response => response.json())
                 .then(dados => {
                     context.commit("setProducts", dados.data)
+                    return true;
                 })
         },
 

@@ -45,7 +45,7 @@
 import PageTitle from "@/components/template/PageTitle";
 import CardNumber from "@/components/template/CardNumber";
 import TableList from "@/components/template/TableList";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: 'HomeView',
@@ -60,8 +60,6 @@ export default {
     acoes: [] // Edit, delete
   }),
   methods: {
-    ...mapActions(["fetchBrands","fetchProducts"]),
-
     ...mapGetters(["totalBrands", "totalProducts", "getNewsProducts"]),
 
     produtos() {
@@ -73,10 +71,6 @@ export default {
 
       return {}
     }
-  },
-  created() {
-    this.fetchBrands();
-    this.fetchProducts();
   }
 }
 </script>
