@@ -1,4 +1,5 @@
 import {createStore} from 'vuex'
+import options from "@/store/options";
 
 export default createStore({
     state: {
@@ -203,5 +204,7 @@ export default createStore({
         },
 
     },
-    modules: {}
+    modules: {
+        options
+    }
 })

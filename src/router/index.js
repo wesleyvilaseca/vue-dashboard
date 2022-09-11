@@ -5,9 +5,13 @@ import AddMarcaView from "@/views/brands/AddMarcaView";
 import ProdutosView from "@/views/products/ProdutosView";
 import AddProdutoView from "@/views/products/AddProdutoView";
 import EditProdutoView from "@/views/products/EditProdutoView";
+import Options from "@/views/options/Options";
+import AddOptions from "@/views/options/AddOptions";
+import EditOptions from "@/views/options/EditOptions";
 import store from "@/store/index";
 
 const routes = [
+    // Home
   {
     path: '/',
     name: 'home',
@@ -16,6 +20,8 @@ const routes = [
     },
     component: HomeView
   },
+
+    // Marcas
   {
     path: '/marcas',
     name: 'marcas',
@@ -32,6 +38,8 @@ const routes = [
     },
     component: AddMarcaView
   },
+
+    // Produtos
   {
     path: '/produtos',
     name: 'produtos',
@@ -55,6 +63,32 @@ const routes = [
       title: "Editar Produto - " + store.state.nameSite
     },
     component: EditProdutoView,
+  },
+
+    // Options
+  {
+    path: '/informacoes',
+    name: 'informacoes',
+    meta: {
+      title: "Informações de produtos - " + store.state.nameSite
+    },
+    component: Options
+  },
+  {
+    path: '/informacoes/adicionar',
+    name: 'add_informacoes',
+    meta: {
+      title: "Adicionar Informações de Produtos - " + store.state.nameSite
+    },
+    component: AddOptions,
+  },
+  {
+    path: '/informacoes/:id',
+    name: 'edit_informacoes',
+    meta: {
+      title: "Editar Informação - " + store.state.nameSite
+    },
+    component: EditOptions,
   }
 ]
 

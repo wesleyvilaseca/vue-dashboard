@@ -71,6 +71,23 @@
                   </ul>
                 </li>
 
+                <!-- Inf. -->
+                <li class="has-submenu">
+                  <a href="#">
+                    <i class="icon-shopping-cart"></i>
+                    Informações para produtos <i class="mdi mdi-chevron-down mdi-drop"></i>
+                  </a>
+                  <ul class="submenu">
+                    <li>
+                      <router-link to="/informacoes">Todas as informações</router-link>
+                    </li>
+
+                    <li>
+                      <router-link to="/informacoes/adicionar">Nova informação </router-link>
+                    </li>
+                  </ul>
+                </li>
+
               </ul>
               <!-- End navigation menu -->
             </div>
@@ -96,11 +113,15 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["fetchProducts", "fetchBrands"])
+    ...mapActions(["fetchProducts", "fetchBrands"]),
+
+    ...mapActions("options", ["fetchOptions", "fetchOptionsValue"])
   },
   created() {
     this.fetchProducts();
     this.fetchBrands();
+    this.fetchOptions();
+    this.fetchOptionsValue();
   }
 }
 </script>
