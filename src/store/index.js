@@ -203,6 +203,30 @@ export default createStore({
                 })
         },
 
+        // Responsável por alterar os dados de um produto
+        updateProduct(context, {obj, form}) {
+            // Processa a api
+            return fetch(context.state.apiURL + "products/" + obj.id + "/edit", {method: "POST", body: form})
+                .then(function (response) {
+                    if (response.ok) {
+                        // Altera na listagem
+                        context.commit("updateProductMutation", obj);
+
+                        // eslint-disable-next-line no-undef
+                        Toast.fire(`O produto foi alterado com sucesso.`, "", "success");
+                        return true;
+                    } else {
+                        // eslint-disable-next-line no-undef
+                        Toast.fire("Ocorreu um erro ao tentar alterar o produto.", "", "error");
+                        return false;
+                    }
+                })
+                .catch(function (error) {
+                    // eslint-disable-next-line no-undef
+                    Toast.fire(error.message, "", "error");
+                })
+        },
+
     },
     modules: {
         options
