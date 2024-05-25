@@ -1,0 +1,13 @@
+:root {
+    --color-white: #ffff;
+    --color-light-white: #f6f6f6;
+    --color-dark-blue: #1a1c2a;
+    --color-light-withe2: #f8f9fa;
+    --color-purple: rgb(64, 64, 255);
+    --color-strong-grey: #343a40;
+    --withe-bg: #fafbfc;
+    --menu-color: var(--color-strong-grey);
+    --menu-color-hover: var(--color-purple);
+    --nav-bg: var(--withe-bg);
+
+}

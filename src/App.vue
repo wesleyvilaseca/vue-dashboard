@@ -8,16 +8,16 @@
     <!-- end container-fluid -->
   </div>
 
-  <FooterSite />
+  <!-- <FooterSite /> -->
 </template>
 
 <script>
   import NavBar from "./components/template/NavBar.vue";
-  import FooterSite from "@/components/template/FooterSite";
+  // import FooterSite from "@/components/template/FooterSite";
 
   export default {
     components: {
-      FooterSite,
+      // FooterSite,
       NavBar
     }
   }

@@ -49,9 +49,9 @@ TABLES OF CSS
 ===================*/
 body {
   background-repeat: repeat;
-  background: #1a1c2a;
+  background: #f8f9fa;
   font-family: "Poppins", sans-serif;
-  color: #a5a6ad;
+  /* color: #a5a6ad; */
   font-size: 13px;
 }
 
@@ -869,13 +869,13 @@ dt {
 
 #topnav .topbar-main .logo {
   line-height: 70px;
-  color: #f6f6f6;
+  color: var(--color-strong-grey);
   font-size: 18px;
-  text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1px;
   float: left;
   margin-right: 48px;
+  min-height: 70px;
 }
 
 #topnav .topbar-main .logo .logo-sm {
@@ -1238,8 +1238,10 @@ body {
 }
 
 #topnav .navbar-custom {
-  background-color: #222437;
-  border-bottom: 2px solid #2e304a;
+  background-color: var(--nav-bg);
+  border-bottom: 2px solid var(--nav-bg);
+  min-height: 60px;
+  box-shadow: 0 .46875rem 2.1875rem rgba(4, 9, 20, .03), 0 .9375rem 1.40625rem rgba(4, 9, 20, .03), 0 .25rem .53125rem rgba(4, 9, 20, .05), 0 .125rem .1875rem rgba(4, 9, 20, .03);
 }
 
 #topnav .navigation-menu {
@@ -1255,23 +1257,23 @@ body {
 
 #topnav .navigation-menu > li > a {
   display: block;
-  color: #b0b1b7;
+  color: var(--menu-color);
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   line-height: 18px;
   border-radius: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 12px;
 }
 
 #topnav .navigation-menu > li > a:hover, #topnav .navigation-menu > li > a:focus, #topnav .navigation-menu > li > a:active {
   background-color: transparent;
-  color: #f6f6f6;
+  color: var(--color-purple);
 }
 
 #topnav .navigation-menu > li > a i {
-  margin-right: 8px;
+  margin-right: 4px;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   vertical-align: middle;
@@ -1295,7 +1297,7 @@ body {
 }
 
 .wrapper {
-  padding-top: 130px;
+  padding-top: 50px;
 }
 
 .page-title-box {
@@ -1320,10 +1322,10 @@ Responsive Menu
     margin-right: 10px;
   }
   #topnav .navigation-menu > li:hover a {
-    color: #f6f6f6;
+    color: var(--color-purple);
   }
   #topnav .navigation-menu > li:hover a i {
-    color: #f6f6f6;
+    color:  var(--color-purple);
   }
   #topnav .navigation-menu > li .submenu {
     position: absolute;
@@ -1935,9 +1937,9 @@ button:focus {
   Card
 ===================*/
 .card {
-  border: none;
+  /* border: none; */
   margin-bottom: 30px;
-  background: #222437;
+  /* background: #222437; */
 }
 
 .list-group-item {
@@ -2848,20 +2850,20 @@ label {
   padding: 15px 12px;
 }
 
-.table-hover tbody tr:hover, .table-striped tbody tr:nth-of-type(odd),
+/* .table-hover tbody tr:hover, .table-striped tbody tr:nth-of-type(odd),
 .thead-default th {
   background-color: #323550;
-}
+} */
 
-.table td, .table th {
+/* .table td, .table th {
   vertical-align: middle;
   border-color: rgba(255, 255, 255, 0.05) !important;
   color: #a5a6ad;
-}
+} */
 
-.table-bordered {
+/* .table-bordered {
   border: 1px solid #323550;
-}
+} */
 
 .table-hover tbody tr:hover {
   color: #a5a6ad;
@@ -2897,8 +2899,8 @@ table.focus-on tbody tr.focused td {
 
 .table-rep-plugin .fixed-solution .sticky-table-header {
   top: 130px !important;
-  background-color: #1a1c2a;
-  border-color: #1a1c2a;
+  /* background-color: #1a1c2a;
+  border-color: #1a1c2a; */
 }
 
 .table-rep-plugin .btn-group.float-right .dropdown-menu {
@@ -3843,3 +3845,11 @@ table.focus-on tbody tr.focused td {
   padding-left: 20px;
 }
 /*# sourceMappingURL=style.css.map */
+
+.mobile-topbar {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-left: 20px;
+}
