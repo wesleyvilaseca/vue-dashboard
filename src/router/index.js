@@ -16,7 +16,8 @@ const routes = [
     path: '/',
     name: 'home',
     meta: {
-      title: "Home - " + store.state.nameSite
+      title: "Home - " + store.state.nameSite,
+      layout: 'AdminLayout'
     },
     component: HomeView
   },
@@ -26,7 +27,8 @@ const routes = [
     path: '/marcas',
     name: 'marcas',
     meta: {
-      title: "Marcas - " + store.state.nameSite
+      title: "Marcas - " + store.state.nameSite,
+      layout: 'SavLayout'
     },
     component: MarcasView
   },
