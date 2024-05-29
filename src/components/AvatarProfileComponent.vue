@@ -5,7 +5,7 @@
     @mouseleave="this.dropdownOpen = false">
         <img src="https://avatars.githubusercontent.com/u/42185973?v=4" class="avatar" alt="Avatar" loading="lazy">
         <div class="dropdown-content" v-if="dropdownOpen">
-          <a href="#">
+          <a href="#" class="profile">
             <div class="user-detail">
               <div class="user-avatar">
                 <img src="https://avatars.githubusercontent.com/u/42185973?v=4" class="avatar" alt="Avatar">
@@ -15,8 +15,9 @@
                 <div>{{ limitarTexto(this.user.email) }}</div>
               </div>
             </div>
+            <div class="mt-3">{{ limitarTexto(this.selectedCourse.description, 33) }}</div>
           </a>
-          <hr>
+          <!-- <hr> -->
           <a href="#">
               <i class="fa-regular fa-user"></i>
               Menu Perfil
@@ -29,10 +30,33 @@
               <i class="fa-solid fa-wallet"></i>
               Mensalidades
           </a>
+
+          <div class="comunication-section">
+            <a href="#">
+              <i class="fa-regular fa-bell"></i>
+                Notificações
+            </a>
+          </div>
+
+         <div class="darkmode-section">
+          <a href="#">
+             <div>
+                <i class="fa-regular fa-moon"></i>
+                Modo Noturno
+             </div>
+
+              <div class="custom-control custom-switch ml-3">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1"></label>
+            </div>
+          </a>
+         </div>
+
           <a href="#">
               <i class="fa-solid fa-right-from-bracket"></i>
               Sair
           </a>
+
         </div>
     </div>
 </template>
@@ -49,7 +73,8 @@ export default {
   mounted() {},
     computed: {
     ...mapState({
-      user: (state) => state.userSession.user
+      user: (state) => state.userSession.user,
+      selectedCourse: (state) => state.courseState.course
     }),
 
     name() {
@@ -61,8 +86,8 @@ export default {
     toggleDropdown() {
         this.dropdownOpen = !this.dropdownOpen;
       },
-    limitarTexto(value) {
-      const limite = 30;
+    limitarTexto(value, _limite = 30) {
+      const limite = _limite;
       if (!value) return '';
       if (value.length <= limite) return value;
       return value.substring(0, limite) + '...';
@@ -126,6 +151,10 @@ export default {
       display: flex;
     }
 
+    .dropdown-content a.profile {
+      border-bottom: 1px solid var(--color-light-grey)
+    }
+
     .user-detail .user-data {
       display: flex;
       flex-direction: column;
@@ -138,5 +167,17 @@ export default {
 
     .user-detail .user-avatar img{
       max-height: 50px;
+    }
+
+    .comunication-section {
+      border-top: 1px solid var(--color-light-grey);
+      border-bottom: 1px solid var(--color-light-grey);
+    }
+
+    .darkmode-section a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between
     }
 </style>

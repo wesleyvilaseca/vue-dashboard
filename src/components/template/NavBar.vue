@@ -64,6 +64,7 @@
                 </BrandComponent>
                 <div class="sidebar-menu">
                   <ul>
+                    <li class="selected-course">{{ limitarTexto(this.selectedCourse.description, 35) }} </li>
                     <li v-for="(menu, index) in menus" :key="index">
                       <template v-if="menu?.submenu">
                         <li class="sidebar-dropdown" :class="{ active_side: menu.active }" @click="toggleSubMenu(menu)">
@@ -116,14 +117,15 @@ export default {
   },
     data: () => ({
     dropdownOpen: false,
-    menuOpen: false,
+    menuOpen: true,
   }),
   computed: {
     ...mapState({
       site: "nameSite",
       menus: (state) => state.navMenuState.menus,
       SIZE_SHOW_MOBILE_MENU: (state) => state.navMenuState.SIZE_SHOW_MOBILE_MENU,
-      showMobileMenu: (state) => state.navMenuState.showMobileMenu
+      showMobileMenu: (state) => state.navMenuState.showMobileMenu,
+      selectedCourse: (state) => state.courseState.course
     })
   },
   methods: {
@@ -136,6 +138,12 @@ export default {
       } else {
         this.menuOpen = true;
       }
+    },
+    limitarTexto(value, _limite = 30) {
+      const limite = _limite;
+      if (!value) return '';
+      if (value.length <= limite) return value;
+      return value.substring(0, limite) + '...';
     },
     responsiveMenu(size) {
       if (size <= this.SIZE_SHOW_MOBILE_MENU) {
@@ -160,5 +168,15 @@ export default {
 
 <style scoped>
 #topnav{z-index: 50 !important;}
+
+.selected-course {
+  padding-top: 10px;
+  padding-bottom: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>
