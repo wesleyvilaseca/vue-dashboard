@@ -5,7 +5,7 @@
         <div class="navbar-custom">
           <div class="container-fluid">
             <div id="navigation">
-              <ul class="navigation-menu">
+              <ul class="navigation-menu"  v-if="!showMobileMenu">
                 <BrandComponent :li="true" />
                 <template v-for="(menu, index) in menus" :key="index">
                       <template v-if="menu?.submenu">
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import BrandComponent from '../BrandComponent.vue';
 import AvatarProfileComponent from '../AvatarProfileComponent.vue';
 export default {
@@ -117,91 +117,19 @@ export default {
     data: () => ({
     dropdownOpen: false,
     menuOpen: false,
-    showMobileMenu: false,
-    SIZE_SHOW_MOBILE_MENU: 991,
-    menus: [
-       {
-        name: 'Home',
-        link: '/',
-        icon: 'fa-solid fa-house'
-      },
-      {
-        name: 'Mensalidades',
-        link: '/mensalidades',
-        icon: 'fa-solid fa-wallet'
-      },
-      {
-        name: 'Acadêmico',
-        link: '',
-        icon: 'fa-solid fa-school',
-        active: false,
-        submenu: [
-          {
-            name: 'Boletim Acadêmico',
-            link: '/boletim-academico',
-            icon: '',
-          },
-          {
-            name: 'Calendário Acadêmico',
-            link: '/calendario-academico',
-            icon: '',
-          },
-          {
-            name: 'Perguntas Frequentes',
-            link: '/perguntas-frequentes',
-            icon: '',
-          }
-        ]
-      },
-      {
-        name: 'Documentos',
-        link: '',
-        icon: 'fa-regular fa-file',
-        active: false,
-        submenu: [
-          {
-            name: 'Central de documentos',
-            link: '/central-documentos',
-            icon: 'fa-solid fa-file-word',
-          },
-           {
-            name: 'Manual do Aluno',
-            link: '/manual-do-aluno',
-            icon: 'fa-solid fa-bars',
-          },
-          {
-            name: 'Contato',
-            link: '/contato',
-            icon: 'fa-solid fa-headset',
-          }
-        ]
-      },
-      {
-        name: 'Comunicação',
-        link: '',
-        icon: 'fa-solid fa-phone',
-        active: false,
-        submenu: [
-          {
-            name: 'CAD - Central de Atendimento',
-            link: '/cad',
-            icon: '',
-          },
-          {
-            name: 'Comunicados institucionais',
-            link: '/comunicados-institucionais',
-            icon: '',
-          }
-        ]
-      }
-    ]
   }),
   computed: {
     ...mapState({
-      site: "nameSite"
+      site: "nameSite",
+      menus: (state) => state.navMenuState.menus,
+      SIZE_SHOW_MOBILE_MENU: (state) => state.navMenuState.SIZE_SHOW_MOBILE_MENU,
+      showMobileMenu: (state) => state.navMenuState.showMobileMenu
     })
   },
   methods: {
+      ...mapMutations({
+      _showMobileMenu: "navMenuState/SET_SHOW_MENU_MOBILE",
+    }),
     toggleMenu() {
       if (this.menuOpen) {
         this.menuOpen = false;
@@ -211,9 +139,9 @@ export default {
     },
     responsiveMenu(size) {
       if (size <= this.SIZE_SHOW_MOBILE_MENU) {
-        this.showMobileMenu = true;
+        this._showMobileMenu(true);
       } else {
-        this.showMobileMenu = false;
+         this._showMobileMenu(false);
       }
     },
     toggleSubMenu(menu) {
