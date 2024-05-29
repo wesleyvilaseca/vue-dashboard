@@ -38,7 +38,7 @@
             </div>
           </div>
 
-          <div class="mobile-topbar" v-if="showMobileMenu">
+          <div class="mobile-topbar" style="padding-right: 15px;" v-if="showMobileMenu">
             <BrandComponent />
             <AvatarProfileComponent />
           </div>

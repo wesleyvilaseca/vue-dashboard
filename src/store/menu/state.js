@@ -5,11 +5,11 @@ export default {
          link: '/',
          icon: 'fa-solid fa-house'
        },
-       {
-         name: 'Mensalidades',
-         link: '/mensalidades',
-         icon: 'fa-solid fa-wallet'
-       },
+      //  {
+      //    name: 'Mensalidades',
+      //    link: '/mensalidades',
+      //    icon: 'fa-solid fa-wallet'
+      //  },
        {
          name: 'Acadêmico',
          link: '',
