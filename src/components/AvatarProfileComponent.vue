@@ -2,9 +2,10 @@
     <div class="dropdown">
         <img src="https://avatars.githubusercontent.com/u/42185973?v=4" class="avatar" alt="Avatar" loading="lazy" @click="toggleDropdown">
         <div class="dropdown-content">
+        <a href="#" class="text-center">{{ this.name }}</a>
         <a href="#">
             <i class="fa-regular fa-user"></i>
-            Meu Perfil
+            Menu Perfil
         </a>
         <a href="#">
             <i class="fa-solid fa-graduation-cap"></i>
@@ -19,18 +20,30 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "AvatarProfileComponent",
   props: {},
   data: () => ({
     dropdownOpen: false
   }),
+  mounted() {},
+    computed: {
+    ...mapState({
+      user: (state) => state.userSession.user
+    }),
+
+    name() {
+      const userName = this.user.name.split(' ');
+      return `${userName[0]} ${userName.pop()}`;
+    }
+  },
   methods: {
     toggleDropdown() {
         this.dropdownOpen = !this.dropdownOpen;
       }
   },
-  updated() {}
 }
 </script>
 
