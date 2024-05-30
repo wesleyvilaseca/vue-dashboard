@@ -73,6 +73,11 @@ export default {
              icon: '',
            }
          ]
+       },
+       {
+        name: 'Disciplinas',
+        link: '/disciplinas',
+        icon: 'fa-solid fa-grip-vertical'
        }
      ],
      showMobileMenu: false,

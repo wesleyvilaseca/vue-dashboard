@@ -1,13 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import MarcasView from "@/views/brands/MarcasView";
-import AddMarcaView from "@/views/brands/AddMarcaView";
-import ProdutosView from "@/views/products/ProdutosView";
-import AddProdutoView from "@/views/products/AddProdutoView";
-import EditProdutoView from "@/views/products/EditProdutoView";
-import Options from "@/views/options/Options";
-import AddOptions from "@/views/options/AddOptions";
-import EditOptions from "@/views/options/EditOptions";
+import HomeView from '../views/HomeView.vue';
+import ModulesView from '../views/modules/ModulesView.vue';
+import ModuleView from '../views/modules/ModuleView.vue';
 import store from "@/store/index";
 
 const routes = [
@@ -21,76 +15,23 @@ const routes = [
     },
     component: HomeView
   },
-
-    // Marcas
   {
-    path: '/marcas',
-    name: 'marcas',
+    path: '/disciplinas',
+    name: 'modules',
     meta: {
-      title: "Marcas - " + store.state.nameSite,
-      layout: 'SavLayout'
+      title: "Disciplinas",
+      layout: 'AdminLayout'
     },
-    component: MarcasView
+    component: ModulesView
   },
   {
-    path: '/marcas/adicionar',
-    name: 'add_marcas',
+    path: '/disciplina/:id',
+    name: 'disciplina',
     meta: {
-      title: "Adicionar Marca - " + store.state.nameSite
+      title: "Disciplina",
+      layout: 'AdminLayout'
     },
-    component: AddMarcaView
-  },
-
-    // Produtos
-  {
-    path: '/produtos',
-    name: 'produtos',
-    meta: {
-      title: "Produtos - " + store.state.nameSite
-    },
-    component: ProdutosView
-  },
-  {
-    path: '/produtos/adicionar',
-    name: 'add_produtos',
-    meta: {
-      title: "Adicionar Produto - " + store.state.nameSite
-    },
-    component: AddProdutoView,
-  },
-  {
-    path: '/produto/:id',
-    name: 'edit_produtos',
-    meta: {
-      title: "Editar Produto - " + store.state.nameSite
-    },
-    component: EditProdutoView,
-  },
-
-    // Options
-  {
-    path: '/informacoes',
-    name: 'informacoes',
-    meta: {
-      title: "Informações de produtos - " + store.state.nameSite
-    },
-    component: Options
-  },
-  {
-    path: '/informacoes/adicionar',
-    name: 'add_informacoes',
-    meta: {
-      title: "Adicionar Informações de Produtos - " + store.state.nameSite
-    },
-    component: AddOptions,
-  },
-  {
-    path: '/informacoes/:id',
-    name: 'edit_informacoes',
-    meta: {
-      title: "Editar Informação - " + store.state.nameSite
-    },
-    component: EditOptions,
+    component: ModuleView
   }
 ]
 

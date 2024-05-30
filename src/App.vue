@@ -22,6 +22,8 @@
     data: () => ({
       LAYOUT_ADMIN: 'AdminLayout',
       LAYOUT_SAV: 'SavLayout'
-  })
+  }),
+  mounted() {
+  },
   }
 </script>

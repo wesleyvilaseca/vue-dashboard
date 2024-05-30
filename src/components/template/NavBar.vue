@@ -117,7 +117,7 @@ export default {
   },
     data: () => ({
     dropdownOpen: false,
-    menuOpen: true,
+    menuOpen: false,
   }),
   computed: {
     ...mapState({
