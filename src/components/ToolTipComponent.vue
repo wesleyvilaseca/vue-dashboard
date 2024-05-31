@@ -2,11 +2,12 @@
   <div class="tooltip-box">
     <slot />
     <div
-      class="tooltip"
+      :class="`tooltip box-${position}`" :style="`width: ${width}px`"
     >
       <span
-        class="text"
-      >{{ text }}</span>
+        :class="`text text-${position}`"
+        v-html="text"
+        />
     </div>
   </div>
 </template>
@@ -17,6 +18,14 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    position: {
+        type: String,
+        default: 'bottom'
+    },
+    width: {
+      type: String,
+      default: '160'
     }
   }
 };
@@ -34,32 +43,37 @@ export default {
 
 .tooltip { 
   color: #ffffff;
-  text-align: center;
   padding: 5px 0;
+  margin-top:2px;
   border-radius: 2px;
-  
-  width: 120px;
-  bottom: 100%;
   left: 50%;
-  margin-left: -60px;
-
   opacity: 0;
-  transition: opacity 1s;
-
+  transition: opacity 0.1s;
   position: absolute;
   z-index: 1;
-
-  background: #a782e8;
+  background: var(--menu-color);
+  transform: translateX(-50%);
 }
 
-.text::after {
+.tooltip.box-top {
+  bottom: 100%;
+}
+
+.tooltip-box .text::after {
   content: " ";
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #a782e8 transparent transparent transparent;
+}
+
+.tooltip-box .text-bottom::after {
+  border-color:  transparent transparent  var(--menu-color) transparent;
+}
+
+.tooltip-box .text-top::after {
+  border-color: var(--menu-color) transparent transparent transparent;
 }
 </style>

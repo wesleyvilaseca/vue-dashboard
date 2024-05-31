@@ -32,7 +32,7 @@ export default {
                     videos: '5',
                     vizualizedArticles: '0',
                     articles: 1,
-                    exercicesConclud: 0,
+                    exercicesConcluded: 0,
                     exercices: 5,
                 }
             },
@@ -45,7 +45,7 @@ export default {
                     videos: '5',
                     vizualizedArticles: '0',
                     articles: '1',
-                    exercicesConclud: '0',
+                    exercicesConcluded: '0',
                     exercices: '5',
                 }
             }

@@ -3857,3 +3857,7 @@ table.focus-on tbody tr.focused td {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.width-20 {
+  min-width: 20px;
+}

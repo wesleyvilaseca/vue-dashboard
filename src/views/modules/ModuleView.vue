@@ -7,8 +7,25 @@
                 <div class="card-body">
                     <div class="lesson-card"> 
                       <h5 class="card-title"> {{ discipline.name }} </h5>
-                      <ToolTipComponent text="Difficulty">
-                           <span> hover over me </span>
+                      <ToolTipComponent :text="`
+                        <div class='pl-2 pr-2'>
+                          <div>
+                            <i class='fa-solid fa-play width-20'></i>
+                            <span>${discipline.disciplineDetail.visualizedVideos} / ${discipline.disciplineDetail.videos} Vídeo</span>
+                          </div>
+                          <div>
+                            <i class='fa-regular fa-newspaper width-20'></i>
+                            <span>${discipline.disciplineDetail.vizualizedArticles} / ${discipline.disciplineDetail.articles} Artigo</span>
+                          </div>
+                          <div>
+                            <i class='fa-solid fa-list-check width-20'></i>
+                            <span>${discipline.disciplineDetail.exercicesConcluded} / ${discipline.disciplineDetail.exercices} Múltipla Escolha</span>
+                          </div>
+                        </div>
+                      `"
+                      width="200"
+                      >
+                           <i class="fa-solid fa-circle-info"></i>
                       </ToolTipComponent>
                     </div>
                 </div>
@@ -54,6 +71,14 @@ export default {
 
 <style scoped>
  .lesson-card {
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
  }
+
+ .fa-circle-info {
+  font-size: 22px;
+  color: var(--color-purple)
+ }
+
 </style>
