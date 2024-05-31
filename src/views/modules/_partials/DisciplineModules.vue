@@ -1,0 +1,81 @@
+<template>
+  <div class="left">
+    <div class="card">
+      <div class="title bg-laravel">
+        <span class="text">Modulos</span>
+        <span class="icon far fa-stream"></span>
+      </div>
+
+      <div
+        class="modules active">
+        <div class="name">
+          <span class="text">{{ module.name }}</span>
+          <span class="icon fas fa-sort-down"></span>
+        </div>
+        <ul class="classes" v-show="module.id == showModule">
+          <li
+            v-for="lesson in module.lessons"
+            :key="lesson.id"
+            :class="{'active' : lesson.id === lessonInPlayer.id}"
+            @click.prevent="addLessonInPlayer(lesson)">
+            <span v-if="lesson.status == 1" class="check active fas fa-check"></span>
+            <span class="nameLesson">{{ lesson.name }}</span>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+// import { computed, ref } from 'vue'
+
+export default {
+    name: 'DisciplineModules',
+    data: () => ({
+      lessonInPlayer: {}
+    }),
+    computed: {
+    ...mapState({
+        module: (state) => state.courseState.moduleDiscipline,
+    }),
+    backRoute() {
+      return ``;
+    },
+  },
+    methods: {
+        addLessonInPlayer (lesson) {
+          this.lesson = lesson
+          // store.commit('SET_LESSON_PLAYER', lesson)
+        }
+    }
+
+    // setup() {
+    //     const store = useStore()
+
+    //     const showModule = ref('0')
+
+    //     const lessonInPlayer = computed(() => store.state.courses.lessonPlayer)
+
+    //     // const course = computed(() => store.state.courses.courseSelected)
+    //     const modules = computed(() => store.state.courses.courseSelected.modules)
+
+    //     const toggleModule = (moduleId) => showModule.value = moduleId
+
+    //     const addLessonInPlayer = (lesson) => {
+    //       store.commit('SET_LESSON_PLAYER', lesson)
+    //     }
+
+    //     return {
+    //       // course,
+    //       modules,
+    //       showModule,
+    //       toggleModule,
+    //       addLessonInPlayer,
+    //       lessonInPlayer,
+    //     }
+    // },
+}
+</script>

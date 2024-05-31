@@ -21,6 +21,7 @@ export default {
         }
     ],
     moduleDisciplines: {
+        id: 1,
         module: 'Gerenciamento Avançado de Projetos',
         disciplines: [
             {
@@ -48,6 +49,33 @@ export default {
                     exercicesConcluded: '0',
                     exercices: '5',
                 }
+            }
+        ]
+    },
+    moduleDiscipline: {
+        id: 1,
+        name: 'A aurora da Gestão de Projetos',
+        lessons: [
+            {
+                id: 1,
+                type: 'video',
+                name: 'lorem ipsum',
+                src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
+                status: 1
+            },
+            {
+                id: 2,
+                type: 'video',
+                name: 'lorem ipsum',
+                src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
+                status: 1
+            },
+            {
+                id: 3,
+                type: 'video',
+                name: 'lorem ipsum',
+                src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
+                status: 1
             }
         ]
     }

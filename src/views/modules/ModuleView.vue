@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     accessLesson(item) {
-      console.log(item)
+       this.$router.push({ name: 'trilha', params: { id: this.module.id, lessonId: item.id } })
     }
   }
 }

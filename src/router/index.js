@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue';
 import ModulesView from '../views/modules/ModulesView.vue';
 import ModuleView from '../views/modules/ModuleView.vue';
+import ModuleDisciplineView from '../views/modules/ModuleDisciplineView.vue';
+
 import store from "@/store/index";
 
 const routes = [
@@ -32,6 +34,15 @@ const routes = [
       layout: 'AdminLayout'
     },
     component: ModuleView
+  },
+  {
+    path: '/disciplina/:id/trilha/:lessonId',
+    name: 'trilha',
+    meta: {
+      title: "Trilha",
+      layout: 'AdminLayout'
+    },
+    component: ModuleDisciplineView
   }
 ]
 
