@@ -1,11 +1,21 @@
 <template>
   <div>
     <PageTitle :page="module.name" :pages="pages" :backRoute="backRoute"/>
-    <SideBarComponent>
-      <template v-slot:content>
-        Hello from content
+    <LeftBarPageWrapperComponent
+    sideBarWidth="300"
+    sideBarTitle='
+    <i class="fa-solid fa-person-chalkboard mr-2" style="color: var(--color-purple)"></i>
+    Aulas
+    '
+    >
+      <template v-slot:content_leftbar>
+        Hello from sidebar content
       </template>
-    </SideBarComponent>
+
+      <template v-slot:page_content>
+        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+      </template>
+    </LeftBarPageWrapperComponent>
 
     <!-- <div class="content">
           <div class="container">
@@ -28,7 +38,7 @@ import { mapState } from "vuex";
 // import Modules from './_partials/DisciplineModules.vue';
 // import Player from './_partials/PlayerComponent.vue';
 // import SupportsLesson from './_partials/SupportsLesson.vue';
-import SideBarComponent from '@/components/SideBarComponent.vue';
+import LeftBarPageWrapperComponent from '@/components/LeftBarPageWrapperComponent.vue';
 
 
 export default {
@@ -38,7 +48,7 @@ export default {
       // Modules,
       // Player,
       // SupportsLesson,
-      SideBarComponent
+      LeftBarPageWrapperComponent
      },
   data: () => ({
     disciplineId: '',
