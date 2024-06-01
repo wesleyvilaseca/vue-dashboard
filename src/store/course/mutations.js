@@ -9,5 +9,13 @@ export default {
 
     setCourseModule: (state, data) => {
         state.courseModule = data;
+    },
+
+    UPDATE_STATUS_LESSON: (state, data) => {
+        state.moduleDiscipline = data;
+    },
+
+    SET_SELECTED_LESSON: (state, data) => {
+        state.selectedLesson = data;
     }
 }

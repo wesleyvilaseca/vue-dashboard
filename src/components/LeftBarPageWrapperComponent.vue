@@ -73,7 +73,7 @@ export default {
     },
 
     responsivePaddingLeftContent() {
-      return `${this.sideBarWidth}px`
+      return `-${this.sideBarWidth}px`
     }
   },
   mounted() {
@@ -131,7 +131,7 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-    .leftbar-page-wrapper.toogled-leftbar .page-content {
+    .leftbar-page-wrapper.toogled-leftbar .page-content > div {
         padding-left: v-bind(responsivePaddingLeftContent);
     }
 }
@@ -205,7 +205,7 @@ export default {
 }
 
 .leftbar-body {
-    margin-top: 35px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 </style>

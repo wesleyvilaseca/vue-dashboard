@@ -59,24 +59,26 @@ export default {
             {
                 id: 1,
                 type: 'video',
-                name: 'lorem ipsum',
+                name: 'Aula 1 - Lorem Ipsum',
                 src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
                 status: 1
             },
             {
                 id: 2,
                 type: 'video',
-                name: 'lorem ipsum',
+                name: 'Aula 2 - Ipsum Lorem',
                 src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
-                status: 1
+                status: 2
             },
             {
                 id: 3,
-                type: 'video',
-                name: 'lorem ipsum',
+                type: 'article',
+                name: 'Aula 3 - Lorem Lorem Ipsum',
                 src: 'https://youtu.be/V14jTusJ9os?list=PLWXw8Gu52TRL3sY3esdsH2PxYiRdXwfvX',
-                status: 1
+                status: 2
             }
         ]
-    }
+    },
+
+    selectedLesson: {}
 }

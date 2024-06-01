@@ -9,7 +9,7 @@
     '
     >
       <template v-slot:content_leftbar>
-        Hello from sidebar content
+         <Modules />
       </template>
 
       <template v-slot:page_content>
@@ -33,9 +33,9 @@
 
 <script>
 import PageTitle from "@/components/template/PageTitle";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
-// import Modules from './_partials/DisciplineModules.vue';
+import Modules from './_partials/DisciplineModules.vue';
 // import Player from './_partials/PlayerComponent.vue';
 // import SupportsLesson from './_partials/SupportsLesson.vue';
 import LeftBarPageWrapperComponent from '@/components/LeftBarPageWrapperComponent.vue';
@@ -45,7 +45,7 @@ export default {
   name: "ModuleDisciplineView",
   components: { 
       PageTitle,
-      // Modules,
+      Modules,
       // Player,
       // SupportsLesson,
       LeftBarPageWrapperComponent
@@ -66,6 +66,7 @@ export default {
   computed: {
     ...mapState({
         module: (state) => state.courseState.moduleDiscipline,
+        selectedLesson: (state) => state.courseState.selectedLesson
     }),
     backRoute() {
       return `/disciplina/${this.disciplineId}`;
@@ -73,15 +74,19 @@ export default {
   },
   mounted() {
     this.disciplineId = this.$route.params.id;
-
      this.pages.push({
       name: 'Disciplina',
       link: '/disciplina/' + this.disciplineId
     });
 
+    if (!this.selectedLesson?.id) {
+      this.setSelectedLesson(this.module.lessons[0]);
+    }
   },
   methods: {
-
+    ...mapMutations({
+      setSelectedLesson: "courseState/SET_SELECTED_LESSON",
+    }),
   }
 }
 </script>
