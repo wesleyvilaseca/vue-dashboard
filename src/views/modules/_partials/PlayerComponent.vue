@@ -1,20 +1,8 @@
 <template>
-  <!-- <div class="training">
-    <div class="card bg-laravel">
-      <span class="icon">
-        <img src="images/icons/laravel.svg" alt="" />
-      </span>
-      <span class="title">{{ lesson.name }}</span>
-      <router-link :to="{name: 'campus.home'}" class="btn laravel">
-        <i class="fas fa-chevron-left"></i>
-        Voltar
-      </router-link>
-    </div>
+  <div class="video-container">
     <iframe
-      v-if="lesson.video"
-      width="100%"
-      height="auto"
-      :src="lesson.video"
+      class="responsive-iframe"
+      :src="embedUrl"
       :title="lesson.name"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -22,7 +10,7 @@
     ></iframe>
   </div>
 
-  <div class="description-lesson" v-if="lesson.description">
+  <!-- <div class="description-lesson" v-if="lesson.description">
     {{ lesson.description }}
   </div> -->
   <div></div>
@@ -34,19 +22,49 @@
 
 export default {
     name: 'PlayerComponent',
-    setup() {
-      // const store = useStore()
-
-      // const lesson = computed(() => store.state.courses.lessonPlayer)
-
-      // watch(() => store.state.courses.lessonPlayer, () => {
-      //   if (lesson.value.id != '')
-      //     setTimeout(() => store.dispatch('markLessonViewed'), 3000)
-      // })
-
-      // return {
-      //   lesson
-      // }
+    props: {
+      lesson: {
+        type: Object
+      }
+    },
+    computed: {
+      embedUrl() {
+        return `https://www.youtube.com/embed/${this.lesson.youTubeVideoId}`;
+        }
+    },
+    mounted() {
+      console.log(this.lesson)
     }
+    // setup() {
+    //   const store = useStore()
+
+    //   const lesson = computed(() => store.state.courses.lessonPlayer)
+
+    //   watch(() => store.state.courses.lessonPlayer, () => {
+    //     if (lesson.value.id != '')
+    //       setTimeout(() => store.dispatch('markLessonViewed'), 3000)
+    //   })
+
+    //   return {
+    //     lesson
+    //   }
+    // }
 }
 </script>
+
+<style scoped>
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Proporção de aspecto 16:9 (h / w * 100%) */
+  overflow: hidden;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>

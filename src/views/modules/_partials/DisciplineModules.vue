@@ -87,6 +87,8 @@ export default {
             case 'article':
               return 'fa-regular fa-newspaper'
           
+            case 'test':
+              return 'fa-solid fa-list-check'
             default:
               break;
           }

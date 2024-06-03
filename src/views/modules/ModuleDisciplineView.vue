@@ -13,8 +13,59 @@
       </template>
 
       <template v-slot:page_content>
-        <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div class="lesson-content" :style="`background-color:${backgroundColorContent}`">
+          <!-- <div>
+            <h4>{{ selectedLesson.name }}</h4>
+          </div> -->
+          <template v-if="selectedLesson.type == VIDEO">
+            <Player :lesson="this.selectedLesson"/>
+          </template>
+          <template v-if="selectedLesson.type == ARTICLE">
+            <div v-html="selectedLesson.html"></div>
+          </template>
+          <template v-if="selectedLesson.type == TEST">
+            <TestModuleComponent />
+          </template>
+        </div>
+
+        <TabsWrapperComponent>
+            <TabComponent title="Visão geral">
+            <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+             Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+             Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+              Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, 
+              elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. 
+              Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+              Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+              </p>
+
+             <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+             Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+             Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+              Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, 
+              elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. 
+              Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+              Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+              </p>
+
+            <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+             Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+             Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+              Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, 
+              elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. 
+              Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
+              Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+              </p>
+            </TabComponent>
+            <TabComponent title="Perguntas e respostas">Perguntas e respostas</TabComponent>
+            <TabComponent title="Observações">Observações</TabComponent>
+            <TabComponent title="Avaliações">Observações</TabComponent>
+        </TabsWrapperComponent>
       </template>
+      
     </LeftBarPageWrapperComponent>
 
     <!-- <div class="content">
@@ -36,9 +87,12 @@ import PageTitle from "@/components/template/PageTitle";
 import { mapState, mapMutations } from "vuex";
 
 import Modules from './_partials/DisciplineModules.vue';
-// import Player from './_partials/PlayerComponent.vue';
+import Player from './_partials/PlayerComponent.vue';
+import TestModuleComponent from './_partials/TestModuleComponent.vue';
 // import SupportsLesson from './_partials/SupportsLesson.vue';
 import LeftBarPageWrapperComponent from '@/components/LeftBarPageWrapperComponent.vue';
+import TabsWrapperComponent from '@/components/TabsWrapperComponent.vue';
+import TabComponent from '@/components/TabComponent.vue';
 
 
 export default {
@@ -46,12 +100,18 @@ export default {
   components: { 
       PageTitle,
       Modules,
-      // Player,
+      Player,
       // SupportsLesson,
-      LeftBarPageWrapperComponent
+      TestModuleComponent,
+      LeftBarPageWrapperComponent,
+      TabsWrapperComponent,
+      TabComponent
      },
   data: () => ({
     disciplineId: '',
+    VIDEO: 'video',
+    ARTICLE: 'article',
+    TEST: 'test',
     pages: [
       {
         name: "Home",
@@ -70,6 +130,20 @@ export default {
     }),
     backRoute() {
       return `/disciplina/${this.disciplineId}`;
+    },
+    contentHeigth() {
+      return this.selectedLesson?.type == this.VIDEO ? '60vh' : '70vh';
+    },
+    backgroundColorContent() {
+      switch (this.selectedLesson.type) {
+        case this.VIDEO:
+          return `var(--color-gray-400)`;
+        case this.ARTICLE:
+        case this.TEST:
+          return `var(--color-white)`;      
+        default:
+          return "#fff";
+      }
     }
   },
   mounted() {
@@ -101,6 +175,15 @@ export default {
  .fa-circle-info {
   font-size: 22px;
   color: var(--color-purple)
+ }
+
+ .lesson-content {
+    max-width: 100%;
+    height: v-bind(contentHeigth);
+    overflow-y: auto;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
  }
 
 </style>

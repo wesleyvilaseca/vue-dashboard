@@ -4,6 +4,7 @@
         <div class="leftbar-filter">
             <button
                 class="open-leftbar"
+                :style="`margin-top:${leftBarMarginTop}px`"
                 title="Abrir filtro"
                 alt="Abrir filtro"
                 @click.prevent="showSideBar = true"
@@ -11,7 +12,7 @@
                     <span :class="buttomIcon"></span>
             </button>
 
-            <div class="content-filter leftbar-wrapper" :class="showSideBar ? '' : 'toggled'" :style="`width: ${sideBarWidth}px`">
+            <div class="content-filter leftbar-wrapper" :class="showSideBar ? '' : 'toggled'" :style="`width: ${sideBarWidth}px; margin-top:${leftBarMarginTop}px`">
                 <div class="leftbar-filter-title">
                     <div v-html="sideBarTitle"></div>
                     <span
@@ -64,7 +65,8 @@ export default {
   },
   data() {
     return {
-      showSideBar: false
+      showSideBar: false,
+      leftBarMarginTop: 0,
     }
   },
   computed: {
@@ -90,6 +92,27 @@ export default {
     }
     responsiveShowMenu(window.innerWidth);
     window.addEventListener('resize', () => responsiveShowMenu(window.innerWidth));
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      // const leftBarWrapper = document.querySelector('.leftbar-wrapper');
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      // const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      // const windowHeight = window.innerHeight;
+
+      // Se o scroll for maior que 100px, aplica margin-top de -60px no leftBarWrapper
+      if (scrollPosition > 100) {
+        this.leftBarMarginTop = -60;
+      } else {
+        this.leftBarMarginTop = 0;
+      }
+
+      // Se o scroll estiver próximo ao final da página, remove o margin-top negativo
+      // if ((pageHeight - scrollPosition - windowHeight) < 200) {
+      //   this.leftBarMarginTop = 0;
+      // }
+    }
   },
   watch: {
     showSideBar() {
@@ -148,6 +171,7 @@ export default {
     width: 30px;
     border-radius: 50%;
     background-color: var(--bg-primary);
+    transition: margin-top 0.3s ease;
 }
 
 .leftbar-filter .open-leftbar.toggled {
@@ -155,17 +179,19 @@ export default {
 }
 
 .leftbar-wrapper {
+    transition: margin-top 0.3s ease;
     position: fixed;
     cursor: auto;
     overflow: visible;
     box-shadow: 0 .46875rem 2.1875rem rgba(4, 9, 20, .03), 0 .9375rem 1.40625rem rgba(4, 9, 20, .03), 0 .25rem .53125rem rgba(4, 9, 20, .05), 0 .125rem .1875rem rgba(4, 9, 20, .03);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    height: 70%;
+    height: 100%;
     padding-bottom: 102px;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0px 13px 0px 13px;
-    background-color: var(--nav-bg)
+    background-color: var(--nav-bg);
+    z-index: 1;
 }
 
 .leftbar-wrapper.toggled {
