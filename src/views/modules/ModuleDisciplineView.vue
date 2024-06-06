@@ -5,7 +5,7 @@
     sideBarWidth="300"
     sideBarTitle='
     <i class="fa-solid fa-person-chalkboard mr-2" style="color: var(--color-purple)"></i>
-    Aulas
+    <span style="color: var(--nav-menu-li)"> Aulas </span>
     '
     >
       <template v-slot:content_leftbar>

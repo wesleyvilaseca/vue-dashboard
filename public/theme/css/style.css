@@ -49,9 +49,9 @@ TABLES OF CSS
 ===================*/
 body {
   background-repeat: repeat;
-  background: #f8f9fa;
+  background: var(--color-bg-body-content);
   font-family: "Poppins", sans-serif;
-  /* color: #a5a6ad; */
+  color: var(--default-items-color);
   font-size: 13px;
 }
 
@@ -1257,7 +1257,7 @@ body {
 
 #topnav .navigation-menu > li > a {
   display: block;
-  color: var(--menu-color);
+  color: var(--nav-menu-li);
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   line-height: 18px;
@@ -1322,10 +1322,10 @@ Responsive Menu
     margin-right: 10px;
   }
   #topnav .navigation-menu > li:hover a {
-    color: var(--color-purple);
+    color: var(--menu-color-hover);
   }
   #topnav .navigation-menu > li:hover a i {
-    color:  var(--color-purple);
+    color:  var(--menu-color-hover);
   }
   #topnav .navigation-menu > li .submenu {
     position: absolute;

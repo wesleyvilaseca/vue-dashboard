@@ -36,6 +36,6 @@ export default {
     padding-left: 14px;
     padding-top: 5px;
     font-size: 18px !important;
-    color: #000;
+    color: var(--nav-menu-li);
 }
 </style>

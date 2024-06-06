@@ -11,8 +11,8 @@
                 <img src="https://avatars.githubusercontent.com/u/42185973?v=4" class="avatar" alt="Avatar">
               </div>
               <div class="user-data">
-                <div><b>{{ this.name }} </b> </div>
-                <div>{{ limitarTexto(this.user.email) }}</div>
+                <div class="user-name"><b>{{ this.name }} </b> </div>
+                <div class="user-email">{{ limitarTexto(this.user.email) }}</div>
               </div>
             </div>
             <div class="mt-3">{{ limitarTexto(this.selectedCourse.description, 33) }}</div>
@@ -122,7 +122,7 @@ export default {
     .dropdown-content {
       display: block;
       position: absolute;
-      background-color: #f9f9f9;
+      background-color: var(--color-bg-100);
       min-width: 250px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
@@ -143,7 +143,8 @@ export default {
     }
 
     .dropdown-content a:hover {
-      background-color: #f1f1f1;
+      /* background-color: #f1f1f1; */
+      color: var(--menu-color-hover);
     }
 
     .dropdown:hover .dropdown-content {
@@ -163,6 +164,10 @@ export default {
       display: flex;
     }
 
+    .dropdown-content a {
+      color: var(--nav-menu-li);
+    }
+
     .dropdown-content a.profile {
       border-bottom: 1px solid var(--color-light-grey)
     }
@@ -171,6 +176,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      color: var(--nav-menu-li);
     }
 
     .user-detail .user-avatar {

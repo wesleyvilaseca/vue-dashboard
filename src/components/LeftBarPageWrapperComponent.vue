@@ -226,6 +226,7 @@ export default {
 }
 
 .leftbar-filter .leftbar-filter-title .fa-times {
+    color: var(--nav-menu-li);
     cursor: pointer;
     font-size: 15px;
 }

@@ -64,7 +64,8 @@ export default {
     border-bottom: 2px solid transparent;
     cursor: pointer;
     transition: 0.4s all ease-out;
-    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */ 
+    color: var(--nav-menu-li);
 }
 
 .tabs__header li.active {
