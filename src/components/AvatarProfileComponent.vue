@@ -46,7 +46,7 @@
              </div>
 
               <div class="custom-control custom-switch ml-3">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <input v-model="activeDarkMode" type="checkbox" class="custom-control-input" id="customSwitch1" @change.prevent="darmode()">
                 <label class="custom-control-label" for="customSwitch1"></label>
             </div>
           </a>
@@ -68,9 +68,13 @@ export default {
   name: "AvatarProfileComponent",
   props: {},
   data: () => ({
-    dropdownOpen: false
+    dropdownOpen: false,
+    activeDarkMode: false,
   }),
-  mounted() {},
+  mounted() {
+        const _activeDarkMode = localStorage.getItem('active-darkmode');
+        this.activeDarkMode = _activeDarkMode == 1 ? true : false;
+  },
     computed: {
     ...mapState({
       user: (state) => state.userSession.user,
@@ -80,9 +84,12 @@ export default {
     name() {
       const userName = this.user.name.split(' ');
       return `${userName[0]} ${userName.pop()}`;
-    }
+    },
   },
   methods: {
+    darmode() {
+      localStorage.setItem('active-darkmode', this.activeDarkMode ? 1 : 0);
+    },
     toggleDropdown() {
         this.dropdownOpen = !this.dropdownOpen;
       },
@@ -91,6 +98,11 @@ export default {
       if (!value) return '';
       if (value.length <= limite) return value;
       return value.substring(0, limite) + '...';
+    }
+  },
+  watch: {
+    activeDarkMode() {
+        document.documentElement.setAttribute('data-theme', this.activeDarkMode ? 'darkMode' : '');
     }
   }
 }

@@ -147,7 +147,7 @@ body {
     overflow-y: auto;
     position: relative;
     overflow-x: hidden;
-    background-color: var(--nav-bg);
+    background-color: var(s--color-bg-100);
     box-shadow: 0 .46875rem 2.1875rem rgba(4, 9, 20, .05),
     -0.25rem 0 0.53125rem rgba(4, 9, 20, .07),
     -0.125rem 0 0.1875rem rgba(4, 9, 20, .05);
@@ -508,7 +508,7 @@ body {
 }
 
 .chiller-theme .sidebar-footer {
-    background-color: var(--nav-bg);
+    background-color: var(--color-bg-100);
     /* box-shadow: 0px -1px 5px #282c33; */
     /* border-top: 1px solid #464a52; */
 }

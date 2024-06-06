@@ -190,7 +190,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0px 13px 0px 13px;
-    background-color: var(--nav-bg);
+    background-color: var(--color-bg-100);
     z-index: 1;
 }
 

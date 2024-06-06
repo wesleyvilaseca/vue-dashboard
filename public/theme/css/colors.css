@@ -63,10 +63,9 @@
     --color-purple: rgb(64, 64, 255);
     --color-strong-grey: #343a40;
     --color-light-grey: #D3D3D3;
-    --withe-bg: #fafbfc;
+    --color-bg-100: #fafbfc;
     --menu-color: var(--color-strong-grey);
     --menu-color-hover: var(--color-purple);
-    --nav-bg: var(--withe-bg);
     --highcharts-background-color: var(--color-white);
     --highcharts-neutral-color-100: var(--color-gray-600);
     --highcharts-neutral-color-80: var(--color-gray-550);
@@ -76,4 +75,8 @@
     --highcharts-neutral-color-10: var(--color-gray-100);
     --highcharts-positive-color: var(--color-green-400);
     --highcharts-negative-color: var(--color-red-400);
+}
+
+[data-theme="darkMode"] {
+    --color-bg-100: #222437;
 }
