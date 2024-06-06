@@ -14,9 +14,6 @@
 
       <template v-slot:page_content>
         <div class="lesson-content" :style="`background-color:${backgroundColorContent}`">
-          <!-- <div>
-            <h4>{{ selectedLesson.name }}</h4>
-          </div> -->
           <template v-if="selectedLesson.type == VIDEO">
             <Player :lesson="this.selectedLesson"/>
           </template>
@@ -67,18 +64,6 @@
       </template>
       
     </LeftBarPageWrapperComponent>
-
-    <!-- <div class="content">
-          <div class="container">
-              <Modules />
-              <div class="right">
-                  <div class="content">
-                    <Player />
-                    <SupportsLesson />
-                  </div>
-              </div>
-          </div>
-    </div> -->
   </div>
 </template>
 
@@ -132,7 +117,7 @@ export default {
       return `/disciplina/${this.disciplineId}`;
     },
     contentHeigth() {
-      return this.selectedLesson?.type == this.VIDEO ? '60vh' : '70vh';
+      return this.selectedLesson?.type == this.VIDEO ? '100%' : '70vh';
     },
     backgroundColorContent() {
       switch (this.selectedLesson.type) {
