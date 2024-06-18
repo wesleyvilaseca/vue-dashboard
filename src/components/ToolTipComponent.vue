@@ -51,7 +51,7 @@ export default {
   transition: opacity 0.1s;
   position: absolute;
   z-index: 1;
-  background: var(--menu-color);
+  background: var(--nav-menu-li);
   transform: translateX(-50%);
 }
 
@@ -70,10 +70,10 @@ export default {
 }
 
 .tooltip-box .text-bottom::after {
-  border-color:  transparent transparent  var(--menu-color) transparent;
+  border-color:  transparent transparent  var(--nav-menu-li) transparent;
 }
 
 .tooltip-box .text-top::after {
-  border-color: var(--menu-color) transparent transparent transparent;
+  border-color: var(--nav-menu-li) transparent transparent transparent;
 }
 </style>
